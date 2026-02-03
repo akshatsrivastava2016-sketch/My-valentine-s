@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>My Valentine 💖</title>
+<style>
+    body {
+        font-family: 'Comic Sans MS', cursive;
+        background: linear-gradient(to right, #ff9a9e, #fad0c4);
+        text-align: center;
+        padding: 20px;
+        overflow: hidden;
+    }
+    .card {
+        background: white;
+        padding: 25px;
+        border-radius: 20px;
+        max-width: 400px;
+        margin: auto;
+        box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+    }
+    h1 {
+        color: #ff4d6d;
+    }
+    button {
+        padding: 10px 20px;
+        margin: 10px;
+        border: none;
+        border-radius: 20px;
+        font-size: 16px;
+        cursor: pointer;
+    }
+    .yes {
+        background: #ff4d6d;
+        color: white;
+    }
+    .no {
+        background: #ddd;
+    }
+    #angry {
+        display: none;
+        font-size: 50px;
+        animation: shake 0.4s infinite;
+    }
+    @keyframes shake {
+        0% { transform: translateX(0); }
+        25% { transform: translateX(-5px); }
+        50% { transform: translateX(5px); }
+        75% { transform: translateX(-5px); }
+        100% { transform: translateX(0); }
+    }
+</style>
+</head>
+
+<body>
+
+<div class="card" id="content">
+    <h1>Hey Love 💕</h1>
+    <p>I have something very important to ask you...</p>
+    <button class="yes" onclick="next()">Okay 😍</button>
+</div>
+
+<div id="angry">😡💥</div>
+
+<script>
+let step = 0;
+
+const questions = [
+    "Do you know you are the cutest person ever? 🥺",
+    "Do you promise to steal my hoodies forever? 😌",
+    "Will you be MY Valentine? 💘"
+];
+
+function next(answer = "yes") {
+    if (answer === "no") {
+        const angry = document.getElementById("angry");
+        angry.style.display = "block";
+        setTimeout(() => {
+            angry.style.display = "none";
+            alert("WRONG ANSWER 😤 Try again!");
+        }, 1000);
+        return;
+    }
+
+    if (step < questions.length) {
+        document.getElementById("content").innerHTML = `
+            <h1>${questions[step]}</h1>
+            <button class="yes" onclick="next('yes')">YES 💖</button>
+            <button class="no" onclick="next('no')">NO 🙄</button>
+        `;
+        step++;
+    } else {
+        document.getElementById("content").innerHTML = `
+            <h1>YAYYYY 💕🥰</h1>
+            <p>You just made me the happiest person ever!</p>
+            <p>Happy Valentine’s Day ❤️</p>
+        `;
+    }
+}
+</script>
+
+</body>
+</html>
